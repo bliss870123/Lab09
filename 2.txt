@@ -1,0 +1,20 @@
+#include <IRremote.h>
+const int buttonPin = 10;
+boolean buttonState = 0;
+IRsend irsend;
+
+void setup()
+{
+  pinMode(10,INPUT);
+  pinMode(3,OUTPUT);
+}
+
+void loop() {
+  buttonState = digitalRead(buttonPin);
+  if (buttonState) {
+    digitalWrite(3,1);
+    irsend.sendNEC(0x4FB48B7, 32);
+  }
+  delay(100);
+  digitalWrite(3,0);
+}
